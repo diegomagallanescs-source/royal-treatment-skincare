@@ -1709,12 +1709,46 @@
     aspect-ratio: 16/9;
   }
 
+  /* ── Navbar: bigger logo + name on mobile ── */
+  .navbar-inner {
+    padding: 0.85rem 1.25rem;
+  }
+
+  .navbar-logo img {
+    width: 58px;
+  }
+
+  .navbar-logo-name {
+    font-size: 1.45rem;
+  }
+
+  .hamburger {
+    padding: 6px;
+  }
+
+  .hamburger span {
+    width: 26px;
+  }
+
+  /* ── Hero: push content into upper third ──
+     Adding padding-bottom to the flex container shifts the flex center
+     upward without changing the section height. */
+  .hero {
+    padding-bottom: 16vh;
+  }
+
+  /* ── Hero: bigger title floors on narrow screens ── */
   .hero-title-line1 {
-    font-size: clamp(2.2rem, 9vw, 3.2rem);
+    font-size: clamp(2.7rem, 9.5vw, 3.4rem);
   }
 
   .hero-title-line2 {
-    font-size: clamp(2.6rem, 10.5vw, 3.8rem);
+    font-size: clamp(3.1rem, 11vw, 4rem);
+  }
+
+  /* ── Hero topic link: hide on mobile — nav menu covers it ── */
+  .hero-topic-link {
+    display: none;
   }
 }
 
@@ -1823,7 +1857,7 @@
   }
 
   .navbar-logo-name {
-    font-size: 1rem;
+    font-size: 1.35rem; /* keep legible — do not shrink below 768px override */
   }
 
   .stats-bar-inner {
