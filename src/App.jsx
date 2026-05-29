@@ -6,37 +6,16 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
 import Services from './components/Services'
-import FeaturedProduct from './components/FeaturedProduct'
-import SkincareSpotlight from './components/SkincareSpotlight'
+import Philosophy from './components/Philosophy'
+import PhotoBreak from './components/PhotoBreak'
 import Testimonials from './components/Testimonials'
 import HoursPayment from './components/HoursPayment'
 import Footer from './components/Footer'
 import Products from './components/Products'
+import CancelAppointment from './components/CancelAppointment'
+import ServicesPage from './components/ServicesPage'
+import SkincarePage from './components/SkincarePage'
 
-function StatsBar() {
-  return (
-    <div className="stats-bar">
-      <div className="stats-bar-inner">
-        <div className="stat-item">
-          <span className="stat-value">30+</span>
-          <span className="stat-label">Years Experience</span>
-        </div>
-        <div className="stat-item">
-          <span className="stat-value">2013</span>
-          <span className="stat-label">Established</span>
-        </div>
-        <div className="stat-item">
-          <span className="stat-value">11</span>
-          <span className="stat-label">Signature Treatments</span>
-        </div>
-        <div className="stat-item">
-          <span className="stat-value">100%</span>
-          <span className="stat-label">Royal Experience</span>
-        </div>
-      </div>
-    </div>
-  )
-}
 
 function ScrollTopButton() {
   const [visible, setVisible] = useState(false)
@@ -57,7 +36,12 @@ function ScrollTopButton() {
 }
 
 function getPageFromHash() {
-  return window.location.hash === '#/products' ? 'products' : 'home'
+  const hash = window.location.hash
+  if (hash === '#/products') return 'products'
+  if (hash === '#/cancel') return 'cancel'
+  if (hash === '#/services') return 'services'
+  if (hash === '#/skincare') return 'skincare'
+  return 'home'
 }
 
 export default function App() {
@@ -81,14 +65,26 @@ export default function App() {
 
       {page === 'products' ? (
         <Products navigate={navigate} />
+      ) : page === 'cancel' ? (
+        <CancelAppointment />
+      ) : page === 'services' ? (
+        <ServicesPage />
+      ) : page === 'skincare' ? (
+        <SkincarePage />
       ) : (
         <main>
-          <Hero />
-          <StatsBar />
+          <Hero navigate={navigate} />
           <About />
           <Services />
-          <FeaturedProduct />
-          <SkincareSpotlight />
+          <PhotoBreak
+            src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=1920&q=85&auto=format&fit=crop"
+            alt="Esthetician applying a facial treatment"
+          />
+          <Philosophy />
+          <PhotoBreak
+            src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=1920&q=85&auto=format&fit=crop"
+            alt="Relaxing spa skincare session"
+          />
           <Testimonials />
           <HoursPayment />
         </main>

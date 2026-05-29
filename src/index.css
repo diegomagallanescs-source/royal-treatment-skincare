@@ -5,15 +5,15 @@
 }
 
 :root {
-  --cream: #FDFAF6;
-  --cream-dark: #F0EBE3;
-  --cream-medium: #F5EFE6;
-  --gold: #B8935A;
-  --gold-light: #D4A96A;
-  --gold-pale: #F5ECD8;
-  --charcoal: #2A2A2A;
-  --gray: #6B6B6B;
-  --gray-light: #A0A0A0;
+  --cream: oklch(1.00 0 0);
+  --cream-dark: oklch(0.95 0.025 240);
+  --cream-medium: oklch(0.97 0.016 240);
+  --gold: oklch(0.44 0.20 240);
+  --gold-light: oklch(0.72 0.09 240);
+  --gold-pale: oklch(0.96 0.04 240);
+  --charcoal: oklch(0.18 0.03 252);
+  --gray: oklch(0.42 0.025 240);
+  --gray-light: oklch(0.56 0.020 240);
   --white: #FFFFFF;
   --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-sans: 'Inter', system-ui, sans-serif;

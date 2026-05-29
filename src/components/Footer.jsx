@@ -33,7 +33,7 @@ export default function Footer({ navigate }) {
               <li><button onClick={() => goHome('reviews')}>Reviews</button></li>
               <li><button onClick={() => navigate('products')}>Products</button></li>
               <li><a href={BOOK_URL} target="_blank" rel="noopener noreferrer">Book Online</a></li>
-              <li><a href={CANCEL_URL} target="_blank" rel="noopener noreferrer">Cancel Appointment</a></li>
+              <li><button onClick={() => navigate('cancel')}>Cancel Appointment</button></li>
               <li><a href={GIFT_URL} target="_blank" rel="noopener noreferrer">Gift Cards</a></li>
             </ul>
           </div>

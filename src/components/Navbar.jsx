@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react'
 
 const LOGO_URL = 'https://static.wixstatic.com/media/2908e0_ae0890bf293b4175918c7749d8e29c0d~mv2.png'
 const BOOK_URL = 'https://www.royaltreatmentskincare.net/book-online'
-const CANCEL_URL = 'https://www.royaltreatmentskincare.net/cancel-appointment'
-const GIFT_URL = 'https://www.royaltreatmentskincare.net/gift-card'
 
 export default function Navbar({ navigate, currentPage }) {
   const [scrolled, setScrolled] = useState(false)
@@ -15,49 +13,97 @@ export default function Navbar({ navigate, currentPage }) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const goHome = (sectionId) => {
+  const goHome = () => {
     setMenuOpen(false)
     if (currentPage !== 'home') {
       navigate('home')
-      // Wait for home to render, then scroll
-      setTimeout(() => {
-        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
-      }, 80)
     } else {
-      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }
 
-  const goProducts = () => {
+  const goProducts = (anchor) => {
     setMenuOpen(false)
     navigate('products')
+    if (anchor) {
+      setTimeout(() => {
+        document.getElementById(anchor)?.scrollIntoView({ behavior: 'smooth' })
+      }, 80)
+    }
+  }
+
+  const goServices = () => {
+    setMenuOpen(false)
+    navigate('services')
+  }
+
+  const goSkincare = () => {
+    setMenuOpen(false)
+    navigate('skincare')
+  }
+
+  const goCancel = () => {
+    setMenuOpen(false)
+    navigate('cancel')
   }
 
   return (
     <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
       <div className="navbar-inner">
-        <button className="navbar-logo" onClick={() => goHome('hero')}>
+
+        {/* Logo */}
+        <button className="navbar-logo" onClick={goHome}>
           <img src={LOGO_URL} alt="Royal Treatment Skincare logo" />
-          <div className="navbar-logo-text">
-            <span>Royal Treatment</span>
-            <span>Skincare Studio</span>
-          </div>
+          <span className="navbar-logo-name">Royal Treatment</span>
         </button>
 
+        {/* Desktop links */}
         <ul className="navbar-links">
-          <li><button onClick={() => goHome('about')}>About</button></li>
-          <li><button onClick={() => goHome('services')}>Services</button></li>
-          <li><button onClick={() => goHome('spotlight')}>Skincare Tips</button></li>
-          <li><button onClick={() => goHome('reviews')}>Reviews</button></li>
-          <li><button onClick={goProducts} className={currentPage === 'products' ? 'nav-active' : ''}>Products</button></li>
-          <li><a href={GIFT_URL} target="_blank" rel="noopener noreferrer">Gift Cards</a></li>
           <li>
-            <a href={BOOK_URL} target="_blank" rel="noopener noreferrer" className="navbar-cta">
-              Book Now
+            <button
+              onClick={goServices}
+              className={currentPage === 'services' ? 'nav-active' : ''}
+            >
+              Services
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={() => goProducts()}
+              className={currentPage === 'products' ? 'nav-active' : ''}
+            >
+              Products
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={goSkincare}
+              className={currentPage === 'skincare' ? 'nav-active' : ''}
+            >
+              Skincare
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={goCancel}
+              className={currentPage === 'cancel' ? 'nav-active' : ''}
+            >
+              Cancel Appointment
+            </button>
+          </li>
+          <li>
+            <a
+              href={BOOK_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="navbar-cta"
+            >
+              Appointments
             </a>
           </li>
         </ul>
 
+        {/* Hamburger */}
         <button
           className={`hamburger${menuOpen ? ' open' : ''}`}
           onClick={() => setMenuOpen(!menuOpen)}
@@ -67,16 +113,21 @@ export default function Navbar({ navigate, currentPage }) {
         </button>
       </div>
 
+      {/* Mobile menu */}
       {menuOpen && (
         <div className="mobile-menu">
-          <button onClick={() => goHome('about')}>About</button>
-          <button onClick={() => goHome('services')}>Services</button>
-          <button onClick={() => goHome('spotlight')}>Skincare Tips</button>
-          <button onClick={() => goHome('reviews')}>Reviews</button>
-          <button onClick={goProducts}>Products</button>
-          <a href={GIFT_URL} target="_blank" rel="noopener noreferrer">Gift Cards</a>
-          <a href={CANCEL_URL} target="_blank" rel="noopener noreferrer">Cancel Appointment</a>
-          <a href={BOOK_URL} target="_blank" rel="noopener noreferrer" className="mobile-cta">Book Now</a>
+          <button onClick={goServices}>Services</button>
+          <button onClick={() => goProducts()}>Products</button>
+          <button onClick={goSkincare}>Skincare</button>
+          <button onClick={goCancel}>Cancel Appointment</button>
+          <a
+            href={BOOK_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mobile-cta"
+          >
+            Appointments
+          </a>
         </div>
       )}
     </nav>

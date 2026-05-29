@@ -2,12 +2,42 @@ import { useEffect, useState } from 'react'
 
 const BOOK_URL = 'https://www.royaltreatmentskincare.net/book-online'
 
-export default function Hero() {
-  const [loaded, setLoaded] = useState(false)
+// Three hero images — crossfade every 5 seconds.
+// Uses CSS opacity transition (not keyframe animation) so it works even
+// when iOS Low Power Mode throttles CSS animations.
+const SLIDES = [
+  {
+    url: 'https://static.wixstatic.com/media/nsplsh_96dd59ade1744ba886aa0343a3ad88c6~mv2.jpg',
+    pos: 'center top',
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=1920&q=85&auto=format&fit=crop',
+    pos: 'center center',
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1920&q=85&auto=format&fit=crop',
+    pos: 'center center',
+  },
+]
 
+export default function Hero({ navigate }) {
+  const [activeIdx, setActiveIdx] = useState(0)
+
+  // Preload all images so the first transition is smooth
   useEffect(() => {
-    const timer = setTimeout(() => setLoaded(true), 100)
-    return () => clearTimeout(timer)
+    SLIDES.forEach(({ url }) => {
+      const img = new Image()
+      img.src = url
+    })
+  }, [])
+
+  // Cycle slides every 5 s — driven by JS so it isn't blocked by
+  // prefers-reduced-motion CSS media queries or Low Power Mode animation throttling
+  useEffect(() => {
+    const id = setInterval(() => {
+      setActiveIdx((prev) => (prev + 1) % SLIDES.length)
+    }, 5000)
+    return () => clearInterval(id)
   }, [])
 
   const scrollToServices = () => {
@@ -16,27 +46,65 @@ export default function Hero() {
 
   return (
     <section className="hero" id="hero">
-      <div className={`hero-bg${loaded ? ' loaded' : ''}`} />
+
+      {/* Slideshow layers */}
+      {SLIDES.map((slide, i) => (
+        <div
+          key={slide.url}
+          className={`hero-slide${i === activeIdx ? ' active' : ''}`}
+          style={{
+            backgroundImage: `url('${slide.url}')`,
+            backgroundPosition: slide.pos,
+          }}
+        />
+      ))}
+
+      {/* Dark overlay */}
       <div className="hero-overlay" />
 
+      {/* Text content */}
       <div className="hero-content">
-        <span className="hero-eyebrow">Est. 2013 · Licensed Esthetician</span>
-        <h1 className="hero-title">We Treat You<br />Like Royalty</h1>
-        <p className="hero-subtitle">Everyone deserves to feel beautiful</p>
+        <span className="hero-eyebrow">Est. 2013 &nbsp;·&nbsp; Licensed Esthetician</span>
+        <div className="hero-rule" />
+
+        <h1 className="hero-title">
+          <span className="hero-title-line1">We Treat You</span>
+          <span className="hero-title-line2">Like Royalty</span>
+        </h1>
+
+        <p className="hero-tagline">Everyone deserves to feel beautiful</p>
+
         <div className="hero-buttons">
-          <a href={BOOK_URL} target="_blank" rel="noopener noreferrer" className="hero-btn-primary">
-            Book Your Appointment
+          <a
+            href={BOOK_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hero-btn-primary"
+          >
+            Book Appointment
           </a>
           <button className="hero-btn-outline" onClick={scrollToServices}>
             Explore Services
           </button>
         </div>
+
+        <button
+          className="hero-topic-link"
+          onClick={() => navigate('products')}
+        >
+          Skincare Topic of the Month →
+        </button>
       </div>
 
-      <button className="hero-scroll" onClick={scrollToServices} aria-label="Scroll down">
-        <span>Scroll</span>
+      {/* Scroll indicator */}
+      <button
+        className="hero-scroll"
+        onClick={scrollToServices}
+        aria-label="Scroll down"
+      >
         <div className="scroll-line" />
       </button>
+
     </section>
   )
 }
