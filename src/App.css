@@ -1730,20 +1730,26 @@
     width: 26px;
   }
 
-  /* ── Hero: push content into upper third ──
-     Adding padding-bottom to the flex container shifts the flex center
-     upward without changing the section height. */
+  /* ── Hero: pin content near the top instead of centering ──
+     align-items: flex-start makes the flex item start at the top;
+     margin-top on hero-content controls exact distance from hero top. */
   .hero {
-    padding-bottom: 22vh;
+    align-items: flex-start;
+    padding-bottom: 0;
   }
 
-  /* ── Hero: bigger title floors on narrow screens ── */
+  .hero-content {
+    margin-top: 11vh;
+    width: 100%;
+  }
+
+  /* ── Hero: bigger title on mobile ── */
   .hero-title-line1 {
-    font-size: clamp(2.7rem, 9.5vw, 3.4rem);
+    font-size: clamp(3.2rem, 10.5vw, 4rem);
   }
 
   .hero-title-line2 {
-    font-size: clamp(3.1rem, 11vw, 4rem);
+    font-size: clamp(3.8rem, 12.5vw, 4.8rem);
   }
 
   /* ── Hero topic link: hide on mobile — nav menu covers it ── */
@@ -1852,7 +1858,9 @@
   .hero-btn-primary,
   .hero-btn-outline {
     width: 100%;
-    max-width: 280px;
+    max-width: 320px;
+    padding: 1.2rem 2rem;
+    font-size: 0.88rem;
     text-align: center;
   }
 
