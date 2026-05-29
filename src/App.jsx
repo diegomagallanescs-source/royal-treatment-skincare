@@ -58,6 +58,12 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHash)
   }, [])
 
+  // Scroll to top on every page change — prevents browser scroll restoration
+  // from dropping the user mid-page when returning to a previously visited route
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [page])
+
   return (
     <>
       <MonthlyBanner />
