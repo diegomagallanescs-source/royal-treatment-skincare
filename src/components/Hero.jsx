@@ -75,14 +75,12 @@ export default function Hero({ navigate }) {
         <p className="hero-tagline">Everyone deserves to feel beautiful</p>
 
         <div className="hero-buttons">
-          <a
-            href={BOOK_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
             className="hero-btn-primary"
+            onClick={() => navigate('services')}
           >
             Book Appointment
-          </a>
+          </button>
           <button className="hero-btn-outline" onClick={() => navigate('services')}>
             Explore Services
           </button>
