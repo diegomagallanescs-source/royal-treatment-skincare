@@ -20,7 +20,7 @@ export const monthlyContent = {
   banner: {
     message: "🌸 May Glow Special — Refresh your skin this spring and step into summer radiant!",
     ctaText: "Book Now",
-    ctaLink: "https://www.royaltreatmentskincare.net/book-online",
+    ctaLink: "#/services",
   },
 
   // ── 2. FEATURED PRODUCT OF THE MONTH ─────────────────────────

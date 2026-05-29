@@ -11,9 +11,13 @@ export default function MonthlyBanner() {
     <div className="monthly-banner">
       <p>
         {banner.message}&nbsp;&nbsp;
-        <a href={banner.ctaLink} target="_blank" rel="noopener noreferrer">
-          {banner.ctaText} →
-        </a>
+        {banner.ctaLink.startsWith('#') ? (
+          <a href={banner.ctaLink}>{banner.ctaText} →</a>
+        ) : (
+          <a href={banner.ctaLink} target="_blank" rel="noopener noreferrer">
+            {banner.ctaText} →
+          </a>
+        )}
       </p>
       <button
         className="banner-close"
