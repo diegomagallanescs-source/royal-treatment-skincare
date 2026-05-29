@@ -99,7 +99,7 @@
   font-size: 1.2rem;
   color: var(--charcoal);
   letter-spacing: 0.02em;
-  font-weight: 400;
+  font-weight: 600;
   white-space: nowrap;
   line-height: 1;
 }
@@ -312,7 +312,7 @@
   display: block;
   font-family: var(--font-serif);
   font-size: clamp(2.8rem, 6.2vw, 5.2rem);
-  font-weight: 300;
+  font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1.05;
   color: var(--white);
@@ -322,7 +322,7 @@
   display: block;
   font-family: var(--font-serif);
   font-size: clamp(3.2rem, 7.2vw, 6rem);
-  font-weight: 300;
+  font-weight: 600;
   font-style: italic;
   letter-spacing: -0.02em;
   line-height: 1.0;
@@ -334,8 +334,8 @@
   font-family: var(--font-serif);
   font-size: clamp(0.95rem, 1.8vw, 1.12rem);
   font-style: italic;
-  font-weight: 300;
-  color: rgba(255, 255, 255, 0.68);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.78);
   letter-spacing: 0.04em;
   margin-bottom: 2.75rem;
 }
@@ -1734,7 +1734,7 @@
      Adding padding-bottom to the flex container shifts the flex center
      upward without changing the section height. */
   .hero {
-    padding-bottom: 16vh;
+    padding-bottom: 22vh;
   }
 
   /* ── Hero: bigger title floors on narrow screens ── */
@@ -2393,33 +2393,15 @@
 }
 
 /* ═══════════════════════════════════════════════
-   PHOTO BREAK (full-width parallax photo section)
+   PHOTO BREAK (full-width static photo section)
 ═══════════════════════════════════════════════ */
 
-/* Container — clips the overhanging portion of the bg */
 .photo-break {
-  position: relative;
   height: 52vh;
   min-height: 320px;
   max-height: 580px;
-  overflow: hidden;
-  isolation: isolate;
-}
-
-/*
- * Fixed 130 px overhang on top and bottom (inset: -130px 0).
- * JS moves this div ±80 px with translate3d as the section scrolls,
- * revealing different parts of the image (parallax).
- * The 130 px buffer always exceeds the ±80 px travel range,
- * so the edges of the bg div are never exposed.
- */
-.photo-break-bg {
-  position: absolute;
-  inset: -130px 0;
   background-size: cover;
   background-position: center center;
-  will-change: transform;
-  transform: translate3d(0, 0, 0);
 }
 
 @media (max-width: 768px) {
