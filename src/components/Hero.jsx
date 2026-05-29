@@ -81,8 +81,8 @@ export default function Hero({ navigate }) {
           >
             Book Appointment
           </button>
-          <button className="hero-btn-outline" onClick={() => navigate('services')}>
-            Explore Services
+          <button className="hero-btn-outline" onClick={() => navigate('products')}>
+            Explore Products
           </button>
         </div>
 
