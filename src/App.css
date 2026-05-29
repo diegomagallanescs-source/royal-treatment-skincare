@@ -1752,9 +1752,10 @@
     font-size: clamp(3.8rem, 12.5vw, 4.8rem);
   }
 
-  /* ── Hero topic link: hide on mobile — nav menu covers it ── */
+  /* ── Hero topic link: visible on mobile, slightly larger tap target ── */
   .hero-topic-link {
-    display: none;
+    font-size: 0.9rem;
+    margin-top: 1.5rem;
   }
 }
 

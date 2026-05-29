@@ -83,16 +83,16 @@ export default function Hero({ navigate }) {
           >
             Book Appointment
           </a>
-          <button className="hero-btn-outline" onClick={scrollToServices}>
+          <button className="hero-btn-outline" onClick={() => navigate('services')}>
             Explore Services
           </button>
         </div>
 
         <button
           className="hero-topic-link"
-          onClick={() => navigate('products')}
+          onClick={() => navigate('skincare')}
         >
-          Skincare Topic of the Month →
+          Skincare Tip of the Month 🌸
         </button>
       </div>
 
